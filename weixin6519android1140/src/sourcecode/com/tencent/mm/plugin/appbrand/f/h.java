@@ -1,0 +1,113 @@
+package com.tencent.mm.plugin.appbrand.f;
+
+import android.content.Context;
+import com.tencent.gmtrace.GMTrace;
+import com.tencent.mm.plugin.fts.a.a.f;
+import com.tencent.mm.plugin.fts.a.a.i;
+import com.tencent.mm.plugin.fts.a.l;
+import com.tencent.mm.plugin.fts.d.c;
+import com.tencent.mm.plugin.fts.d.i.a;
+import com.tencent.mm.plugin.fts.d.i.b;
+import com.tencent.mm.sdk.platformtools.ae;
+import com.tencent.mm.sdk.platformtools.w;
+import java.util.HashSet;
+import java.util.List;
+
+public final class h
+  extends c
+{
+  public h(Context paramContext, i.b paramb, int paramInt)
+  {
+    super(paramContext, paramb, paramInt);
+    GMTrace.i(16545287766016L, 123272);
+    GMTrace.o(16545287766016L, 123272);
+  }
+  
+  protected final com.tencent.mm.plugin.fts.a.a.a a(ae paramae, HashSet<String> paramHashSet)
+  {
+    GMTrace.i(18198984392704L, 135593);
+    f localf = new f();
+    localf.eQb = this.eQb;
+    localf.lwX = com.tencent.mm.plugin.fts.a.b.d.lxu;
+    localf.lwY = this;
+    localf.handler = paramae;
+    localf.lwW = paramHashSet;
+    paramae = ((l)com.tencent.mm.kernel.h.j(l.class)).search(7, localf);
+    GMTrace.o(18198984392704L, 135593);
+    return paramae;
+  }
+  
+  protected final com.tencent.mm.plugin.fts.d.a.a a(int paramInt, i.a parama)
+  {
+    GMTrace.i(16545690419200L, 123275);
+    int i = paramInt - parama.lzE - 1;
+    i locali = null;
+    Object localObject = locali;
+    if (i < parama.lzI.size())
+    {
+      localObject = locali;
+      if (i >= 0)
+      {
+        locali = (i)parama.lzI.get(i);
+        localObject = new d(paramInt);
+        ((d)localObject).hWl = locali;
+        ((d)localObject).hWm = parama.hWm;
+      }
+    }
+    if (localObject != null) {
+      ((com.tencent.mm.plugin.fts.d.a.a)localObject).lzZ = (i + 1);
+    }
+    GMTrace.o(16545690419200L, 123275);
+    return (com.tencent.mm.plugin.fts.d.a.a)localObject;
+  }
+  
+  protected final void a(com.tencent.mm.plugin.fts.a.a.g paramg, HashSet<String> paramHashSet)
+  {
+    GMTrace.i(18199118610432L, 135594);
+    List localList = paramg.lxb;
+    if ((localList != null) && (!localList.isEmpty()))
+    {
+      com.tencent.mm.modelsns.d locald = new com.tencent.mm.modelsns.d();
+      paramHashSet = this.eQb;
+      paramg = paramHashSet;
+      if (paramHashSet != null) {
+        paramg = paramHashSet.replaceAll(",", " ");
+      }
+      locald.q("20KeyWordId", paramg + ",");
+      locald.q("21ViewType", "1,");
+      locald.q("22OpType", "1,");
+      locald.q("23ResultCount", localList.size() + ",");
+      locald.q("24ClickPos", ",");
+      locald.q("25ClickAppUserName", ",");
+      w.i("MicroMsg.FTSWeAppUIUnit", "report oreh LocalSearchWeApp(13963), %s", new Object[] { locald.LT() });
+      com.tencent.mm.plugin.report.service.g.ork.i(13963, new Object[] { locald });
+    }
+    if (aK(localList))
+    {
+      paramg = new i.a();
+      paramg.gRj = -13;
+      paramg.hWm = this.hWm;
+      paramg.lzI = localList;
+      if (paramg.lzI.size() > 3)
+      {
+        paramg.lzH = true;
+        paramg.lzI = paramg.lzI.subList(0, 3);
+      }
+      this.lzp.add(paramg);
+    }
+    GMTrace.o(18199118610432L, 135594);
+  }
+  
+  public final int getType()
+  {
+    GMTrace.i(10658095562752L, 79409);
+    GMTrace.o(10658095562752L, 79409);
+    return 144;
+  }
+}
+
+
+/* Location:              D:\tools\apktool\weixin6519android1140\jar\classes2-dex2jar.jar!\com\tencent\mm\plugin\appbrand\f\h.class
+ * Java compiler version: 6 (50.0)
+ * JD-Core Version:       0.7.1
+ */
